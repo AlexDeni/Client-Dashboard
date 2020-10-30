@@ -1,0 +1,2 @@
+export const ERROR_EDIT_CLIENTS = 'ERROR_EDIT_CLIENTS'
+export const EDIT_CLIENTS = 'EDIT_CLIENTS'

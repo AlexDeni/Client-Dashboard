@@ -1,0 +1,297 @@
+@import "variable";
+
+.main{
+  padding-top: 20px;
+  @media (max-width: $md3) {
+    padding-top: 70px;
+  }
+}
+
+/*шапка сайта*/
+header{
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.2);
+  .header_block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 65px;
+  }
+  .nav_header{
+    a{
+      color: $secondary;
+      text-decoration: none;
+      @include Heading2;
+      margin: 0 10px;
+      &:hover{
+        color: $hover;
+      }
+    }
+  }
+}
+
+/*menu*/
+.open_menu, .close_menu{
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 290px;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: .5s ease;
+  box-sizing: border-box;
+  background-color: white;
+  a{
+    display: none;
+  }
+}
+@media (max-width: $md3) {
+  .nav_header{
+    display: none;
+  }
+  header{
+    position: fixed;
+    width: 100%;
+    z-index: 80;
+    background-color: $background;
+  }
+  .open_menu{
+    transform: translateX(0);
+    transition: 1s ease;
+    margin-top: 65px;
+    .logo {
+      min-height: 34px;
+      margin: 6px 15px 0;
+      a{
+        display: flex;
+      }
+    }
+    .mob_menu_nan{
+      border-top: 1px solid #e1e1e1;
+      margin-bottom: 25px;
+      font-size: 20px;
+      a{
+        display: block;
+        padding: 28px 15px 0;
+        text-decoration: none;
+        color: black;
+        &:hover {
+          color: yellow;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .mob_menu_logo{
+    display: block;
+    margin: 17px 30px;
+    width: 130px;
+  }
+  #header_menu_icon{
+    display: block;
+    position: fixed;
+    top: 12px;
+    right: 15px;
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    z-index: 100;
+    @media (max-width: $md3) {
+      top: 22px;
+      right: 30px;
+    }
+    span{
+      top: 7px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #000;
+      &:first-child{top: 0;}
+      &:last-child{top: auto; bottom: 0;}
+    }
+    &.active span{
+      &:nth-of-type(1) {
+        transform: rotate(45deg) translate(2px, 5px);
+      }
+      &:nth-of-type(2) {
+        display: none;
+      }
+      &:nth-of-type(3) {
+        transform: rotate(-45deg) translate(4px, -7px);
+      }
+    }
+    &:hover span{
+      transition: .2s linear;
+      &:nth-of-type(1), &:nth-of-type(3) {
+        width: 23px;
+      }
+      &:nth-of-type(2) {
+        width: 25px;
+      }
+    }
+  }
+}
+
+/*клиент*/
+.client_section{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: space-around;
+  .client_card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 150px;
+    flex-basis: 250px;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
+                0 1px 1px 0px rgba(0,0,0,0.14),
+                0 1px 3px 0px rgba(0,0,0,0.12);
+    @media (max-width: 600px){
+      flex-grow: 1;
+      max-width: 400px;
+    }
+    .client_title{
+      @include Heading2;
+      margin: 10px 0;
+    }
+    .client_info{
+      margin: 10px;
+    }
+    .sex_user{
+      margin: 10px 0;
+      @include paragraph;
+      span{
+        font-weight: bold;
+      }
+    }
+    .client_register_date{
+      @include paragraph;
+      text-align: center;
+    }
+  }
+
+}
+
+/*регистрация*/
+.registration_block{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2{
+    @include Heading1Mobile;
+    margin-bottom: 30px;
+  }
+  .registration_form{
+    width: 350px;
+    .register_input{
+      margin-bottom: 20px;
+      input{
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        height: 35px;
+        padding-left: 12px;
+        font-size: 14px;
+        letter-spacing: .7px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 4px;
+      }
+      span{
+        font-size: 14px;
+        color: #bc2c2c;
+      }
+    }
+    .register_form_section{
+      margin-bottom: 10px;
+      .register_form_label{
+        font-size: 18px;
+      }
+      .register_form_block{
+        display: flex;
+        flex-direction: column;
+        label{
+          margin: 10px 0;
+          cursor: pointer;
+          input{
+            margin-right: 10px;
+          }
+        }
+      }
+      .register_form_select{
+        width: 100%;
+        select{
+          width: 100%;
+          cursor: pointer;
+          font-size: 16px;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+          height: 35px;
+          padding-left: 12px;
+          letter-spacing: .7px;
+          box-sizing: border-box;
+          margin-bottom: 4px;
+          option{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .registration_btn{
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+/*регистрация*/
+.update_block{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .update_form{
+    width: 100%;
+    .update_input{
+      margin-bottom: 20px;
+      input{
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        height: 35px;
+        padding-left: 12px;
+        font-size: 14px;
+        letter-spacing: .7px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 4px;
+      }
+      span{
+        font-size: 14px;
+        color: #bc2c2c;
+      }
+    }
+
+    .registration_btn{
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+/*автор*/
+.author{
+
+  .author_text{
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 1000px;
+    text-align: justify;
+  }
+}
