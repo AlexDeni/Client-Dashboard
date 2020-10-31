@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { updateClients } from '../../store/UpdateClients/action'
 import { getAllClients } from '../../store/Clients/action'
 
-const UpdateClient = ({clientId, clients, updateClients }) => {
+const UpdateClient = ({clientId, clients, updateClients, getClients }) => {
     const { register, handleSubmit, errors } = useForm();
 
     const chooseClients = clients.find(function (e) {
@@ -13,93 +13,92 @@ const UpdateClient = ({clientId, clients, updateClients }) => {
 
     const onSubmit = data => {
         updateClients({...data, id: chooseClients.id, uid: chooseClients.uid})
-        getAllClients()
+        getClients()
     };
 
     return (
-        <div className="update_block">
-            <form className="update_form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="update_input">
-                    <input
-                        name="name"
-                        ref={register({
-                            required: {
-                                value: true,
-                                message: "Поле обязательное",
-                            },
-                            minLength: {
-                                value: 3,
-                                message: "Минимальная длинна 3",
-                            },
-                            maxLength: {
-                                value: 20,
-                                message: "Максимальная длинна 20",
-                            },
-                            pattern: {
-                                value: /^[A-Za-z]+$/i,
-                                message: "Incorrect user name",
-                            },
+        <form className="update_card update_card_editor" onSubmit={handleSubmit(onSubmit)}>
+            <div className="update_card_block update_input">
+                <input
+                    name="name"
+                    defaultValue={chooseClients.name}
+                    ref={register({
+                        required: {
+                            value: true,
+                            message: "Поле обязательное",
+                        },
+                        minLength: {
+                            value: 3,
+                            message: "Минимальная длинна 3",
+                        },
+                        maxLength: {
+                            value: 20,
+                            message: "Максимальная длинна 20",
+                        },
+                        pattern: {
+                            value: /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/,
+                            message: "Incorrect user name",
+                        },
 
-                        })}
-                        placeholder="Новое имя*"
-                    />
-                    <span>{errors.name && errors.name.message}</span>
-                </div>
-                <div className="update_input">
-                    <input
-                        name="lastName"
-                        defaultValue=""
-                        ref={register({
-                            required: {
-                                value: true,
-                                message: "Поле обязательное",
-                            },
-                            minLength: {
-                                value: 3,
-                                message: "Минимальная длинна 20",
-                            },
-                            maxLength: {
-                                value: 20,
-                                message: "Максимальная длинна 20",
-                            },
-                            pattern: {
-                                value: /^[A-Za-z]+$/i,
-                                message: "Incorrect user name",
-                            },
+                    })}
+                    placeholder="Новое имя*"
+                />
+                <span>{errors.name && errors.name.message}</span>
+            </div>
+            <div className="update_card_block update_input">
+                <input
+                    name="lastName"
+                    defaultValue={chooseClients.lastName}
+                    ref={register({
+                        required: {
+                            value: true,
+                            message: "Поле обязательное",
+                        },
+                        minLength: {
+                            value: 3,
+                            message: "Минимальная длинна 20",
+                        },
+                        maxLength: {
+                            value: 20,
+                            message: "Максимальная длинна 20",
+                        },
+                        pattern: {
+                            value: /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/,
+                            message: "Incorrect user name",
+                        },
 
-                        })}
-                        placeholder="Новая Фамилия*"
-                    />
-                    <span>{errors.lastName && errors.lastName.message}</span>
-                </div>
-                <div className="update_input">
-                    <input
-                        name="clientInfo"
-                        type="text"
-                        ref={register({
-                            required: {
-                                value: true,
-                                message: "Поле обязательное",
-                            },
-                            minLength: {
-                                value: 3,
-                                message: "Минимальная длинна 3",
-                            },
-                            maxLength: {
-                                value: 150,
-                                message: "Максимальная длинна 150",
-                            },
-                        })}
-                        placeholder="Информация*"
-                    />
-                    <span>{errors.lastName && errors.lastName.message}</span>
-                </div>
-                <div className="registration_btn">
-                    <button type="submit" className="btn">Редактировать</button>
-                </div>
-            </form>
-
-        </div>
+                    })}
+                    placeholder="Новая Фамилия*"
+                />
+                <span>{errors.lastName && errors.lastName.message}</span>
+            </div>
+            <div className="update_card_block update_card_content update_input">
+                <input
+                    name="clientInfo"
+                    defaultValue={chooseClients.clientInfo}
+                    ref={register({
+                        required: {
+                            value: true,
+                            message: "Поле обязательное",
+                        },
+                        minLength: {
+                            value: 3,
+                            message: "Минимальная длинна 3",
+                        },
+                        maxLength: {
+                            value: 150,
+                            message: "Максимальная длинна 150",
+                        },
+                    })}
+                    placeholder="Информация*"
+                />
+                <span>{errors.clientInfo && errors.clientInfo.message}</span>
+            </div>
+            <div className="update_card_block" />
+            <div className="update_card_block registration_btn">
+                <button type="submit" className="btn">Редактировать</button>
+            </div>
+        </form>
     );
 }
 
@@ -113,7 +112,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         updateClients: (clientId) => dispatch(updateClients(clientId)),
-        getAllClients: () => dispatch(getAllClients()),
+        getClients: () => dispatch(getAllClients()),
     }
 }
 

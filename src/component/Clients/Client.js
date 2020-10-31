@@ -23,15 +23,29 @@ const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClien
     }
     if(location.pathname === '/editor'){
         return (
-            <div className="client_card">
-                <h3 className="client_title">{name}</h3>
-                <p className="client_serName">{lastName}</p>
-                <p className="client_info">{clientInfo}</p>
-                <p className="client_register_date">{DateTime(id)}</p>
-                <button className="btn_link_m" onClick={()=>{handleRemove(uId)}}>Удалить</button>
-                <button className="btn_link_m" onClick={()=>{handleEdit(uId)}}>Редактировать</button>
-                {status ? <UpdateClient  clientId={clientId} />: ''}
-            </div>
+            <>
+                <div className="update_card">
+                    <div className="update_card_block">
+                        <p className="client_update_name">{name}</p>
+                    </div>
+                    <div className="update_card_block">
+                        <p className="client_update_lastName">{lastName}</p>
+                    </div>
+                    <div className="update_card_block update_card_content">
+                        <p className="client_update_info">{clientInfo}</p>
+                    </div>
+                    <div className="update_card_block">
+                        <p className="client_update_date">{DateTime(id)}</p>
+                    </div>
+                    <div className="update_card_block update_card_btn">
+                        <button className="btn_link_m" onClick={()=>{handleRemove(uId)}}>Удалить</button>
+                        <button className="btn_link_m" onClick={()=>{handleEdit(uId)}}>
+                            {status ? <span>Свернуть</span> : <span>Редактировать</span> }
+                        </button>
+                    </div>
+                </div>
+                {status ? <UpdateClient   clientId={clientId} />: ''}
+            </>
         );
     }
     return (

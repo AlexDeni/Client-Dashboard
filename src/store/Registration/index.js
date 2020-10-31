@@ -1,17 +1,21 @@
-import { REGISTER_CLIENTS, ERROR_REGISTER_CLIENTS } from './types';
+import { REGISTER_CLIENTS, ERROR_REGISTER_CLIENTS, REMOVE_CLIENT, REMOVE_CLIENT_ERR } from './types';
 
 const initialState = {
-    clients: [],
+    id: [],
+    register: true,
     error: '',
-    id: null
 };
 
 export default function reducerRegisterClient(state = initialState, action) {
     switch (action.type) {
         case REGISTER_CLIENTS:
-            return { ...state, id: action.id};
+            return { ...state, id: action.id, clients: true};
         case  ERROR_REGISTER_CLIENTS:
-            return { ...state, error: action.data };
+            return { ...state, error: action.data, register: false };
+        case REMOVE_CLIENT:
+            return { ...state, id: action.id, clients: true};
+        case  REMOVE_CLIENT_ERR:
+            return { ...state, error: action.data, register: false };
         default:
             return state;
     }

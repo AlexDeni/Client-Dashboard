@@ -38,7 +38,7 @@ let SignRegistr = ({signRegistr, updateClients}) => {
                                 message: "Максимальная длинна 20",
                             },
                             pattern: {
-                                value: /^[A-Za-z]+$/i,
+                                value: /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/,
                                 message: "Некорректное имя пользователя",
                             },
 
@@ -65,7 +65,7 @@ let SignRegistr = ({signRegistr, updateClients}) => {
                                 message: "Максимальная длинна 20",
                             },
                             pattern: {
-                                value: /^[A-Za-z]+$/i,
+                                value: /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/,
                                 message: "Некорректная фамилия пользователя",
                             },
 
@@ -89,8 +89,8 @@ let SignRegistr = ({signRegistr, updateClients}) => {
                                 message: "Минимальная длинна 3",
                             },
                             maxLength: {
-                                value: 150,
-                                message: "Максимальная длинна 150",
+                                value: 350,
+                                message: "Максимальная длинна 350",
                             },
                         })}
                         style={{ borderColor: errors.username && "red" }}

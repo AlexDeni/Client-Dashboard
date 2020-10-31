@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import Client from "./Client";
 
 const ListClients = ({ clients }) => {
-
     return (
-        <div className="client_section">
+        <>
             {clients.map((client) => {
                 const { id, name, lastName, uid, clientInfo} = client;
                 return (
@@ -19,7 +18,7 @@ const ListClients = ({ clients }) => {
                     />
                 );
             })}
-        </div>
+        </>
     );
 };
 

@@ -9,11 +9,28 @@ const Editor = ({clients, isLoading, error}) => {
     if (isLoading) {
         return <Loader />;
     }
+    if (error) {
+        return <ErrorText errorText={error} />;
+    }
     return (
-        <>
-            <ErrorText errorText={error} />
+        <div className="edit_section">
+            <div className="update_card update_card_title">
+                <div className="update_card_block">
+                    <p>Имя</p>
+                </div>
+                <div className="update_card_block">
+                    <p>Фамилия</p>
+                </div>
+                <div className="update_card_block update_card_content">
+                    <p>Информация</p>
+                </div>
+                <div className="update_card_block">
+                    <p>Дата создания</p>
+                </div>
+                <div className="update_card_block"/>
+            </div>
             <ListClients clients={clients} />
-        </>
+        </div>
     );
 }
 

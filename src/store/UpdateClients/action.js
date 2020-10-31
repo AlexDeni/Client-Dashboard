@@ -1,7 +1,6 @@
 import {ERROR_EDIT_CLIENTS, EDIT_CLIENTS } from "./types";
 
 export const updateClients = data => {
-
     return (dispatch, getState, { getFirebase }) => {
         const firestore = getFirebase().firestore();
         firestore

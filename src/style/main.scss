@@ -140,6 +140,7 @@ header{
   justify-content: space-around;
   .client_card{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     min-height: 150px;
@@ -250,44 +251,96 @@ header{
   }
 }
 
-/*регистрация*/
-.update_block{
-  margin-top: 10px;
+/*Редактирования*/
+.update_card{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  .update_form{
-    width: 100%;
-    .update_input{
-      margin-bottom: 20px;
+  justify-content: space-between;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
+  0 1px 1px 0px rgba(0,0,0,0.14),
+  0 1px 3px 0px rgba(0,0,0,0.12);
+  @media (max-width: $md5) {
+    flex-direction: column;
+  }
+  .update_card_block{
+    width: 15%;
+    text-align: center;
+    @media (max-width: $md5) {
+      width: 90%;
+      p{
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .client_update_name{
+        font-size: 20px;
+        font-weight: bold;
+      }
       input{
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        height: 35px;
-        padding-left: 12px;
-        font-size: 14px;
-        letter-spacing: .7px;
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 4px;
-      }
-      span{
-        font-size: 14px;
-        color: #bc2c2c;
+        margin-bottom: 10px;
       }
     }
-
-    .registration_btn{
-      margin-top: 20px;
+  }
+  @media (max-width: $md2) {
+    .update_card_btn{
+      width: 25%;
+    }
+    .btn_link_m{
+      font-size: 15px;
+    }
+  }
+  .update_card_content{
+    width: 25%;
+    @media (max-width: $md5) {
+      width: 90%;
+    }
+  }
+  .update_input{
+    input{
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      height: 35px;
+      padding-left: 12px;
+      font-size: 14px;
+      letter-spacing: .7px;
       width: 100%;
-      text-align: center;
     }
+    input[placeholder]   {
+      color: $secondary;
+      font-style: italic;
+    }
+    span{
+      font-size: 14px;
+      color: #bc2c2c;
+    }
+  }
+
+  .registration_btn{
+    button{
+      width: 150px;
+    }
+  }
+}
+.update_card_editor{
+  margin-top: -14px;
+  background-color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.update_card_title{
+  box-shadow: none;
+  p{
+    font-size: 20px;
+  }
+  @media (max-width: $md2) {
+    display: none;
   }
 }
 
 /*автор*/
 .author{
-
   .author_text{
     font-size: 20px;
     line-height: 1.5;

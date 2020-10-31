@@ -10,13 +10,15 @@ const Home = ({clients, isLoading, error}) => {
         return <Loader />;
     }
     if (error) {
-        return <div>Ошибка: {error.message}</div>;
+        return <ErrorText errorText={error} />;
     }
     return (
         <>
             <NavLink className="btn_link btn_link_m" to="/registration">Регистрация</NavLink>
-            <ErrorText errorText={error} />
-            <ListClients clients={clients} />
+            <div className="client_section">
+                <ListClients clients={clients} />
+            </div>
+
         </>
     );
 }

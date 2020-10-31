@@ -3,7 +3,6 @@ import { MobileMenu } from './MobileMenu'
 import { NavLink } from "react-router-dom";
 import logo from "../../static/logo.png";
 
-
 const Menu = () => {
 
     return (

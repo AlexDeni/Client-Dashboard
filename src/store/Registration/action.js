@@ -37,6 +37,7 @@ export const removeClient = uId => {
             .then(() => {
                 dispatch({
                     type: REMOVE_CLIENT,
+                    uId,
                 });
             })
             .catch((err) => {
