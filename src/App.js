@@ -17,7 +17,7 @@ function App() {
     return (
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-      <BrowserRouter >
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Header />
           <section className="main">
               <div className="container">

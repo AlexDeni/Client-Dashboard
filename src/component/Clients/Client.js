@@ -6,10 +6,10 @@ import { DateTime} from "../../helpers/correctDates";
 import UpdateClient from '../Clients/UpdateClient'
 import {removeClient} from "../../store/Registration/action";
 import {getAllClients} from "../../store/Clients/action";
+import { selectedClientId } from "../../store/UpdateClients/action";
 
-const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClients }) => {
+const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClients, selectedClientId }) => {
     const [status, setStatus] = useState(false);
-    const [clientId, setClientId] = useState(false);
     const location = useLocation();
 
     const handleRemove = (clientId) => {
@@ -19,7 +19,7 @@ const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClien
 
     const handleEdit= (clientId) => {
         setStatus(!status)
-        setClientId(clientId)
+        selectedClientId(clientId)
     }
     if(location.pathname === '/editor'){
         return (
@@ -44,7 +44,7 @@ const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClien
                         </button>
                     </div>
                 </div>
-                {status ? <UpdateClient   clientId={clientId} />: ''}
+                {status ? <UpdateClient />: ''}
             </>
         );
     }
@@ -62,7 +62,8 @@ const Client = ({ name, lastName, id, removeClient, uId, clientInfo, updateClien
 const mapDispatchToProps = (dispatch) => {
     return{
         removeClient: (user) => dispatch(removeClient(user)),
-        updateClients: () => dispatch(getAllClients())
+        updateClients: () => dispatch(getAllClients()),
+        selectedClientId: (clientId) => dispatch(selectedClientId(clientId)),
     }
 }
 
@@ -70,6 +71,7 @@ Client.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
+    clientInfo: PropTypes.string.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Client);

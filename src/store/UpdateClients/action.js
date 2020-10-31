@@ -1,4 +1,4 @@
-import {ERROR_EDIT_CLIENTS, EDIT_CLIENTS } from "./types";
+import {ERROR_UPDATE_CLIENTS, UPDATE_CLIENTS, CHOOSE_CLIENT } from "./types";
 
 export const updateClients = data => {
     return (dispatch, getState, { getFirebase }) => {
@@ -9,12 +9,12 @@ export const updateClients = data => {
             .set(data)
             .then(() => {
                 dispatch({
-                    type: EDIT_CLIENTS,
+                    type: UPDATE_CLIENTS,
                 });
             })
             .catch((err) => {
                 dispatch({
-                    type: ERROR_EDIT_CLIENTS,
+                    type: ERROR_UPDATE_CLIENTS,
                     payload: err
 
                 });
@@ -22,6 +22,10 @@ export const updateClients = data => {
     };
 };
 
-export const activeClients = data => {
-    console.log('jhj', data)
+
+export const selectedClientId = (id) => {
+    return {
+        type: CHOOSE_CLIENT,
+        payload: id,
+    };
 };

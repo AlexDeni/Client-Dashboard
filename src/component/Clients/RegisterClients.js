@@ -4,8 +4,9 @@ import { useHistory } from 'react-router-dom'
 import {signRegistr} from "../../store/Registration/action";
 import {getAllClients} from "../../store/Clients/action";
 import { useForm } from 'react-hook-form';
+import ErrorText from "../ui/ErrorText";
 
-let SignRegistr = ({signRegistr, updateClients}) => {
+let SignRegistr = ({signRegistr, updateClients, error}) => {
     const { register, handleSubmit, errors } = useForm();
     let history = useHistory();
 
@@ -14,6 +15,10 @@ let SignRegistr = ({signRegistr, updateClients}) => {
         updateClients()
         history.push("/")
     };
+
+    if (error) {
+        return <ErrorText errorText={error} />;
+    }
 
     return (
         <div className="registration_block">
@@ -109,7 +114,7 @@ let SignRegistr = ({signRegistr, updateClients}) => {
 
 const mapStateToProps = (state) => {
     return{
-        newClient: state.newClient.id
+        error: state.newClient.error,
     }
 };
 const mapDispatchToProps = (dispatch) => {

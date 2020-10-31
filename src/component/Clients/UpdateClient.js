@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form';
 import { updateClients } from '../../store/UpdateClients/action'
 import { getAllClients } from '../../store/Clients/action'
 
-const UpdateClient = ({clientId, clients, updateClients, getClients }) => {
+const UpdateClient = ({selectedClientId, clients, updateClients, getClients }) => {
     const { register, handleSubmit, errors } = useForm();
 
     const chooseClients = clients.find(function (e) {
-        return e.uid === clientId;
+        return e.uid === selectedClientId;
     });
 
     const onSubmit = data => {
@@ -105,6 +105,7 @@ const UpdateClient = ({clientId, clients, updateClients, getClients }) => {
 const mapStateToProps = (state) => {
     return{
         clients: state.getClients.clients,
+        selectedClientId: state.editClient.selectedClientId,
         isLoading: state.getClients.isLoading,
         error: state.getClients.error,
     }
